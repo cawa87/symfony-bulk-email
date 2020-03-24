@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EmailList index{% endblock %}
+
+{% block body %}
+    <h1>EmailList index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for email_list in email_lists %}
+            <tr>
+                <td>{{ email_list.id }}</td>
+                <td>{{ email_list.title }}</td>
+                <td>
+                    <a href="{{ path('email_list_show', {'id': email_list.id}) }}">show</a>
+                    <a href="{{ path('email_list_edit', {'id': email_list.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('email_list_new') }}">Create new</a>
+{% endblock %}
